@@ -48,6 +48,7 @@ augroup nerd_loader
       \|   execute 'autocmd! nerd_loader'
       \| endif
 augroup END
+Plug 'SirVer/ultisnips'
 Plug 'sgur/vim-editorconfig'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
@@ -71,7 +72,7 @@ let s:coc_extensions = [
 \   'coc-eslint',
 \   'coc-prettier',
 \   'coc-tsserver',
-\	 'coc-snippets'
+\   'coc-ultisnips'
 \ ]
 
 if exists('*coc#add_extension')
@@ -180,7 +181,6 @@ nnoremap <leader>o :only<CR>
 nnoremap <silent> w b
 
 " ================ Plugin Bindings/Settings  ================
-
 " ==== Highlighted Yank ====
 let g:highlightedyank_highlight_duration = 350
 
@@ -386,3 +386,12 @@ let g:gitgutter_map_keys = 0
 let g:indentLine_char = '┆'
 let g:indentLine_enabled = 1
 
+" ==== UltiSnip ====
+let g:UltiSnipsExpandTrigger="<c-*"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit = 'horizontal'
+let g:ultisnips_javascript = {
+      \ 'semi': 'never',
+      \ 'space-before-function-paren': 'never',
+      \ }

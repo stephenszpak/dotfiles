@@ -1,3 +1,4 @@
+# javascript
 snippet imm "import { member } from 'module'"
 import { $1 } from '$2'
 endsnippet
@@ -10,18 +11,12 @@ snippet cl| "console.log ||"
 console.log('$1', ${2:$1}) || $0
 endsnippet
 
-snippet	peek ".then(d => console.log(d) || d)"
-.then(d => console.log(d) || d)
-endsnippet
-
-snippet	peekm ".map(d => console.log(d) || d)"
-.map(d => console.log(d) || d)
-endsnippet
-
 snippet exd "export default" b
 export default $0
 endsnippet
 
+
+# base snippet creation snippet
 snippet snip "snippet" b
 `!p snip.rv = "snippet"` ${1:trigger} "${2:description}" ${3:b}
 ${0:${VISUAL}}
