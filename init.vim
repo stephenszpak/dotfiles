@@ -23,7 +23,6 @@ Plug 'exu/pgsql.vim'
 Plug 'fatih/vim-nginx', {'for' : 'nginx'}
 Plug 'gcavallanti/vim-noscrollbar'
 Plug 'hashivim/vim-hashicorp-tools'
-Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -49,7 +48,6 @@ augroup nerd_loader
       \|   execute 'autocmd! nerd_loader'
       \| endif
 augroup END
-Plug 'SirVer/ultisnips'
 Plug 'sgur/vim-editorconfig'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
@@ -73,7 +71,7 @@ let s:coc_extensions = [
 \   'coc-eslint',
 \   'coc-prettier',
 \   'coc-tsserver',
-\   'coc-ultisnips'
+\	 'coc-snippets'
 \ ]
 
 if exists('*coc#add_extension')
@@ -317,7 +315,6 @@ endfunction
 " Lightline BufferLine
 set showtabline=2
 
-
 let g:lightline#bufferline#filename_modifier = ':t' " Show filename relative to current directory
 let g:lightline#bufferline#unicode_symbols = 1        " Use fancy unicode symbols for various indicators
 let g:lightline#bufferline#modified = ''             " Default pencil is too ugly
@@ -356,6 +353,10 @@ nmap <silent> ]W <Plug>(coc-diagnostic-last)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
+" just notes since I don't want to add keybindings for this
+"  :CocCommand snippets.editSnippets
+"  :CocCommand workspace.showOutput snippets
+
 " ======= Commands =======
 
 " close all other buffers
@@ -380,11 +381,6 @@ endfunction
 
 " ==== GitGutter ====
 let g:gitgutter_map_keys = 0
-
-" ==== UltiSnip ====
-let g:UltiSnipsExpandTrigger="<c-*"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " ==== indentLine ====
 let g:indentLine_char = '┆'

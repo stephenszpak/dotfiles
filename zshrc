@@ -3,15 +3,17 @@ alias v='nvim'
 
 # Init new react project
 alias crct='yarn create react-app'
+alias cp3js='cp ~/source/scripts/three.js $(pwd)'
 
 # Copy files for dot stuffz
+alias cpsnip='cp ~/.config/coc/ultisnips/vim.snippets ~/source/dotfiles'
 alias cpinit='cp ~/.config/nvim/init.vim ~/source/dotfiles'
 alias cpzprez='cp -r ~/.zprezto/runcoms/{zpreztorc,zlogin,zlogout,zprofile,zshenv} ~/source/dotfiles'
 alias cph='cp ~/.zshrc ~/source/dotfiles/zshrc'
 alias cpb='cp ~/.bashrc ~/source/dotfiles/bashrc'
-alias cbc='cp ~/coc-settings.json ~/source/dotfiles/coc-settings.json'
+alias cbc='cp ~/.config/nvim/coc-settings.json ~/source/dotfiles/coc-settings.json'
 alias zprompt='cp ~/.zprezto/modules/prompt/functions/prompt_ssdootz_setup ~/source/dotfiles/prompt_ssdootz_setup'
-alias cpdot='cpinit && cpzprez && cph && cpb && cbc && zprompt'
+alias cpdot='cpinit && cpsnip && cpzprez && cph && cpb && cbc && zprompt'
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
