@@ -1,6 +1,6 @@
 # Not really an install but it does the dirty work!
 
-cp ~/source/dotfiles/coc-settings.json ~/.config/coc/
+cp ~/source/dotfiles/coc-settings.json ~/.config/nvim/
 cp ~/source/dotfiles/bashrc ~/.bashrc
 cp ~/source/dotfiles/zshrc ~/.zshrc
 cp ~/source/dotfiles/init.vim ~/.config/nvim/init.vim
