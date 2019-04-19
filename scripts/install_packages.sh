@@ -39,6 +39,7 @@ brew install cask
 
 CASKS=(
   docker
+  gimp
   google-chrome
   iterm2
   karabiner-elements
@@ -46,7 +47,6 @@ CASKS=(
   postman
   slack
   spotify
-  unity
 )
 
 echo 'Installing cask apps...'
