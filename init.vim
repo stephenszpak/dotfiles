@@ -160,6 +160,7 @@ let mapleader = ' '
 " buffer management
 nnoremap <leader>x  :bn<cr>
 nnoremap <leader>z  :bp<cr>
+nnoremap <leader>c  :bd<cr>
 
 " Easy splitscreen
 nnoremap <silent> vv <C-w>v
@@ -357,7 +358,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 "  :CocCommand snippets.editSnippets
 "  :CocCommand workspace.showOutput snippets
 
-" ======= Commands =======
+" ======= Buffer Management =======
 
 " close all other buffers
 command! BufOnly :%bd|e#

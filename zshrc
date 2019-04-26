@@ -4,6 +4,7 @@ alias v='nvim'
 # Init new react project
 alias crct='yarn create react-app'
 alias cp3js='cp ~/source/scripts/three.js $(pwd)'
+alias frun='docker run --name firesale --rm -it -p 5000:80 firesale'
 
 # Copy files for dot stuffz
 alias cpsnip='cp ~/.config/coc/ultisnips/vim.snippets ~/source/dotfiles'
