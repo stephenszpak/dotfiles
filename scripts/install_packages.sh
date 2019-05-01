@@ -72,8 +72,9 @@ RUBY_GEMS=(
 )
 sudo gem install ${RUBY_GEMS[@]}
 
-echo 'Installing some npm global packages...'
+echo 'Installing yo, react-native-cli, @angular/cli, create-react-app...'
 
 npm install -g yo
 npm install -g react-native-cli
 npm install -g @angular/cli
+npm install -g create-react-app

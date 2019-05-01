@@ -346,6 +346,11 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " rewrite current word
 nmap <leader>rw <Plug>(coc-rename)
 
+" setup prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
 nmap <silent> [W <Plug>(coc-diagnostic-first)
 nmap <silent> [w <Plug>(coc-diagnostic-previous)
 nmap <silent> ]w <Plug>(coc-diagnostic-next)
