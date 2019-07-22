@@ -1,11 +1,17 @@
 # Alias's
 alias v='nvim'
 
+#tail dev log for iq
+alias taildev='tail -f ~/source/ingram_iq/log/development.log'
+alias pg_start="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+alias pg_stop="launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
+
 # Init new react project
 alias crct='yarn create react-app'
 alias cp3js='cp ~/source/scripts/three.js $(pwd)'
 alias frun='docker run --name firesale --rm -it -p 5000:80 firesale'
 alias updateodbc='odbcinst -i -d -f ~/.odbc.ini'
+alias runblock='docker run --name blockhead --rm -it -p 5000:80 -e "VERTICA_HOST=${VERTICA_HOST}" -e "VERTICA_DATABASE=${VERTICA_DATABASE}" -e "VERTICA_USER=${VERTICA_USER}" -e "VERTICA_PASS=${VERTICA_PASS}" blockhead'
 
 # Copy files for dot stuffz
 alias cpsnip='cp ~/.config/coc/ultisnips/vim.snippets ~/source/dotfiles'

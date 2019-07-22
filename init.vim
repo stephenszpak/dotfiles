@@ -20,6 +20,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'cskeeters/vim-smooth-scroll'
 Plug 'exu/pgsql.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'fatih/vim-nginx', {'for' : 'nginx'}
 Plug 'gcavallanti/vim-noscrollbar'
 Plug 'hashivim/vim-hashicorp-tools'
@@ -29,6 +30,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'machakann/vim-highlightedyank'
+Plug 'MattesGroeger/vim-bookmarks'
 Plug 'maximbaz/lightline-trailing-whitespace'
 Plug 'maximbaz/lightline-ale'
 Plug 'mileszs/ack.vim'
@@ -55,6 +57,7 @@ Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-dadbox'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
@@ -138,8 +141,8 @@ set nowrap                " don't wrap lines
 syntax on                     " Turns on syntax highlighting
 
 " Auto indent pasted text
-nnoremap p p=`]<C-o>
-nnoremap P P=`]<C-o>
+" nnoremap p p=`]<C-o>
+" nnoremap P P=`]<C-o>
 set list listchars=trail:·
 
 if isdirectory($HOME . '/.config/nvim/undo') == 0
@@ -185,6 +188,13 @@ nnoremap <silent> w b
 " ==== Highlighted Yank ====
 let g:highlightedyank_highlight_duration = 350
 
+
+" ==== Bookmark ====
+nmap <leader>b <Plug>BookmarkToggle
+nmap <leader>j <Plug>BookmarkNext
+nmap <leader>k <Plug>BookmarkPrev
+nmap <leader>bb <Plug>BookmarkClearAll
+
 " ==== Limelight ====
 nnoremap <leader>l :Limelight<cr>
 nnoremap <leader>L :Limelight!<cr>
@@ -199,7 +209,6 @@ nnoremap <leader>gb :Gblame<cr>
 
 " ==== NERDTree ====
 nmap <C-\> :NERDTreeToggle<CR>
-nnoremap <silent> <leader>nf :NERDTreeFind<CR>
 let NERDTreeMinimalUI=1
 let NERDTreeDirArrows=1
 let NERDTreeShowHidden=1
@@ -214,7 +223,6 @@ command! -bang -nargs=? -complete=dir Files
 
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <silent> <Leader>C        :Colors<CR>
-nnoremap <silent> <Leader>b        :Buffers<CR>
 nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
 nnoremap <silent> <Leader>AG       :Ag <C-R><C-A><CR>
 
@@ -325,7 +333,8 @@ let g:lightline#bufferline#enable_devicon = 1
 let g:lightline#bufferline#show_number = 2
 let g:lightline#bufferline#number_map = {
     \ 0: '₀', 1: '₁', 2: '₂', 3: '₃', 4: '₄',
-    \ 5: '₅', 6: '₆', 7: '₇', 8: '₈', 9: '₉'}
+    \ 5: '₅', 6: '₆', 7: '₇', 8: '₈', 9: '₉',
+    \ }
 
 " === CoC ===
 set shortmess+=c
@@ -401,3 +410,9 @@ let g:ultisnips_javascript = {
       \ 'semi': 'never',
       \ 'space-before-function-paren': 'never',
       \ }
+
+" ==== Commentary ====
+"
+" Use this if a filetype I use is not set up
+" autocmd FileType apache setlocal commentstring=#\ %s
+
