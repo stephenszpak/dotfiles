@@ -13,7 +13,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'rakr/vim-one'
 Plug 'junegunn/seoul256.vim'
 Plug 'drewtempelmeyer/palenight.vim'
-
 Plug 'airblade/vim-gitgutter'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'christoomey/vim-tmux-navigator'
@@ -35,6 +34,7 @@ Plug 'maximbaz/lightline-trailing-whitespace'
 Plug 'maximbaz/lightline-ale'
 Plug 'mileszs/ack.vim'
 Plug 'mengelbrecht/lightline-bufferline'
+Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'ntpeters/vim-better-whitespace'
@@ -57,7 +57,7 @@ Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-dadbox'
+Plug 'tpope/vim-dadbod'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
@@ -74,7 +74,6 @@ let s:coc_extensions = [
 \   'coc-json',
 \   'coc-eslint',
 \   'coc-prettier',
-\   'coc-tsserver',
 \   'coc-ultisnips'
 \ ]
 
@@ -82,8 +81,15 @@ if exists('*coc#add_extension')
   call call('coc#add_extension', s:coc_extensions)
 endif
 
+" seoul256 (dark):
+"   Range:   233 (darkest) ~ 239 (lightest)
+"   Default: 237
+" seoul256 (light):
+"   Range:   252 (darkest) ~ 256 (lightest)
+"   Default: 253
 set background=dark
-colorscheme palenight
+let g:seoul256_background = 234  " For seoul dark background
+colo seoul256
 
 "  These are to provide better color experience....or so they say
 if (has("nvim"))
@@ -169,7 +175,7 @@ nnoremap <leader>c  :bd<cr>
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
 
-nnoremap <leader>w :w!<cr>
+nnoremap <leader>w :wa!<cr>
 
 " ** Navigation **
 " Move around panes
@@ -204,8 +210,8 @@ let g:limelight_conceal_ctermfg = 236
 " ==== Fugitive ====
 nnoremap <leader>gs :Gstatus<cr>
 nnoremap <leader>gd :Gdiff<cr>
-nnoremap <leader>gl :Git log<cr>
 nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gl :Gcommit<cr>
 
 " ==== NERDTree ====
 nmap <C-\> :NERDTreeToggle<CR>
@@ -224,6 +230,7 @@ command! -bang -nargs=? -complete=dir Files
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <silent> <Leader>C        :Colors<CR>
 nnoremap <silent> <Leader>ag       :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader>rg       :Rg
 nnoremap <silent> <Leader>AG       :Ag <C-R><C-A><CR>
 
 inoremap <expr> <c-x><c-t> fzf#complete('tmuxwords.rb --all-but-current --scroll 500 --min 5')
@@ -377,6 +384,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " close all other buffers
 command! BufOnly :%bd|e#
 command! BufCleanup :call BufCleanup()
+nnoremap <silent> <Leader>cc        :BufCleanup<CR>
 
 function! BufCleanup()
   let l:tabs = map(copy(gettabinfo()), 'v:val.tabnr')
@@ -412,7 +420,5 @@ let g:ultisnips_javascript = {
       \ }
 
 " ==== Commentary ====
-"
-" Use this if a filetype I use is not set up
-" autocmd FileType apache setlocal commentstring=#\ %s
+autocmd FileType yaml setlocal commentstring=--\ %s
 
