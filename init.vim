@@ -66,6 +66,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-scriptease'
 Plug 'Yggdroot/indentLine'
 
+" Javascript/React helper
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+
 call plug#end()
 
 let s:coc_extensions = [
@@ -421,4 +425,13 @@ let g:ultisnips_javascript = {
 
 " ==== Commentary ====
 autocmd FileType yaml setlocal commentstring=--\ %s
+
+
+" ==== Javascript ====
+" For JSX dom highlighting
+let g:vim_jsx_pretty_colorful_config = 1
+
+" Changes only the look of characters
+set conceallevel=1
+let g:javascript_conceal_arrow_function = "⇒"
 
