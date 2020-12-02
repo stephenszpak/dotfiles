@@ -12,12 +12,13 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'rakr/vim-one'
 Plug 'junegunn/seoul256.vim'
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'cskeeters/vim-smooth-scroll'
+Plug 'doums/darcula'
+Plug 'drewtempelmeyer/palenight.vim'
 Plug 'exu/pgsql.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'fatih/vim-nginx', {'for' : 'nginx'}
@@ -78,11 +79,20 @@ let s:coc_extensions = [
 \   'coc-json',
 \   'coc-eslint',
 \   'coc-prettier',
-\   'coc-ultisnips'
+\   'coc-ultisnips',
+\   'coc-tsserver'
 \ ]
 
 if exists('*coc#add_extension')
   call call('coc#add_extension', s:coc_extensions)
+endif
+"  These are to provide better color experience....or so they say
+if (has("nvim"))
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
+if (has("termguicolors"))
+  set termguicolors
 endif
 
 " seoul256 (dark):
@@ -92,17 +102,12 @@ endif
 "   Range:   252 (darkest) ~ 256 (lightest)
 "   Default: 253
 set background=dark
-let g:seoul256_background = 234  " For seoul dark background
-colo seoul256
+" let g:seoul256_background = 234  " For seoul dark background
+" colo seoul256
+" colorscheme gruvbox
+colorscheme one
+" colorscheme darcula
 
-"  These are to provide better color experience....or so they say
-if (has("nvim"))
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-
-if (has("termguicolors"))
-  set termguicolors
-endif
 
 " ================ General Configs ================
 augroup vimrc
@@ -147,12 +152,9 @@ set sidescrolloff=5           " horizontal scrolloff
 set wildmenu
 set wildmode=full
 set noshowmode                " do not show mode since using lightline
-set nowrap                " don't wrap lines
+set nowrap                    " don't wrap lines
 syntax on                     " Turns on syntax highlighting
 
-" Auto indent pasted text
-" nnoremap p p=`]<C-o>
-" nnoremap P P=`]<C-o>
 set list listchars=trail:·
 
 if isdirectory($HOME . '/.config/nvim/undo') == 0
@@ -168,6 +170,7 @@ augroup end
 
 " ================ Base Keybindings  ================
 
+" spacebar is our leader key
 let mapleader = ' '
 
 " buffer management
@@ -175,10 +178,18 @@ nnoremap <leader>x  :bn<cr>
 nnoremap <leader>z  :bp<cr>
 nnoremap <leader>c  :bd<cr>
 
-" Easy splitscreen
+" easy splitscreen
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
+" resize splitscreens
+" move  left, right, up, down, and equal
+" nnoremap <silent> vh <C-w>>
+" nnoremap <silent> vl <C-w><
+" nnoremap <silent> vj <C-w>-
+" nnoremap <silent> vk <C-w>+
+" nnoremap <silent> vg <C-w>=
 
+" save all buffers currently opened
 nnoremap <leader>w :wa!<cr>
 
 " ** Navigation **
@@ -261,7 +272,7 @@ let g:ackprg = 'ag --vimgrep --smart-case'
 
 " ==== Lightline ====
 let g:lightline = {
-      \   'colorscheme': 'palenight',
+      \   'colorscheme': 'one',
       \   'active': {
       \     'left': [ [ 'mode' ], [ 'pwd' ] ],
       \     'right': [ [ 'cocstatus', 'trailing', 'lineinfo' ], [ 'fileinfo' ], [ 'currentfunction' ], [ 'gitbranch' ] ],
@@ -433,5 +444,21 @@ let g:vim_jsx_pretty_colorful_config = 1
 
 " Changes only the look of characters
 set conceallevel=1
-let g:javascript_conceal_arrow_function = "⇒"
+"let g:javascript_conceal_arrow_function = "->"
+
+
+"" ==== random yank/paste ====
+"yank inside quote
+nmap <leader>yiq yi"
+"yank inside single quotes
+nmap <leader>yq yi'
+"yank inside paren
+nmap <leader>yp yi(
+"yank inner word
+nmap <leader>yw yiw
+
+"Paste inside quote
+nmap <leader>pq vi"p
+"Paste inside paren
+nmap <leader>pp vi(p
 
