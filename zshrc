@@ -35,7 +35,11 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 export GOPATH=$HOME/go
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/sszpak/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sszpak/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then
+  . "$HOME/google-cloud-sdk/path.zsh.inc"
+fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/sszpak/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sszpak/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then
+  . "$HOME/google-cloud-sdk/completion.zsh.inc"
+fi
