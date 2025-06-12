@@ -1,7 +1,7 @@
 echo 'Lets install some junk!'
 if test ! $(which brew); then
   echo 'Installing homebrew...'
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 brew update
@@ -19,7 +19,6 @@ PACKAGES=(
   rbenv
   ripgrep
   ruby-build
-  the_silver_searcher
   tmux
   watchman
   wget
@@ -34,9 +33,6 @@ brew install ${PACKAGES[@]}
 echo 'Running Cleanup'
 brew cleanup
 
-echo 'Installing cask...'
-brew install cask
-
 CASKS=(
   docker
   gimp
@@ -50,10 +46,10 @@ CASKS=(
 )
 
 echo 'Installing cask apps...'
-brew cask install ${CASKS[@]}
+brew install --cask ${CASKS[@]}
 
 echo 'Installing fonts...'
-brew tap caskroom/fonts
+brew tap homebrew/cask-fonts
 FONTS=(
   font-clear-sans
   font-inconsolidata
@@ -64,7 +60,7 @@ FONTS=(
   font-raleway
   font-roboto
 )
-brew cask install ${FONTS[@]}
+brew install --cask ${FONTS[@]}
 
 echo 'Installing ruby bundler...'
 RUBY_GEMS=(

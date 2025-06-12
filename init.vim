@@ -12,10 +12,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'rakr/vim-one'
 Plug 'junegunn/seoul256.vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'ConradIrwin/vim-bracketed-paste'
 Plug 'cskeeters/vim-smooth-scroll'
 Plug 'doums/darcula'
 Plug 'drewtempelmeyer/palenight.vim'
@@ -33,15 +33,13 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'MattesGroeger/vim-bookmarks'
 Plug 'maximbaz/lightline-trailing-whitespace'
 Plug 'maximbaz/lightline-ale'
-Plug 'mileszs/ack.vim'
 Plug 'mengelbrecht/lightline-bufferline'
 Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc-neco'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'Raimondi/delimitMate'
+Plug 'windwp/nvim-autopairs'
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 augroup nerd_loader
   autocmd!
   autocmd VimEnter * silent! autocmd! FileExplorer
@@ -53,7 +51,7 @@ augroup nerd_loader
 augroup END
 Plug 'SirVer/ultisnips'
 Plug 'sgur/vim-editorconfig'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
@@ -65,7 +63,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-scriptease'
-Plug 'Yggdroot/indentLine'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Javascript/React helper
 Plug 'pangloss/vim-javascript'
@@ -114,8 +112,6 @@ augroup vimrc
   autocmd!
 augroup END
 
-set nocompatible
-filetype off
 filetype plugin indent on
 
 set laststatus=2              " ensures you see the status bar
@@ -255,20 +251,16 @@ inoremap <expr> <c-x><c-d> fzf#vim#complete#path('blsd')
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" ==== delimitmate ====
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_expand_space = 1
-let g:delimitMate_smart_quotes = 1
-let g:delimitMate_expand_inside_quotes = 0
-let g:delimitMate_smart_matchpairs = '^\%(\w\|\$\)'
-
-imap <expr> <CR> pumvisible() ? "\<c-y>" : "<Plug>delimitMateCR"
+" ==== autopairs ====
+lua << EOF
+require('nvim-autopairs').setup{}
+EOF
 
 " ==== pgsql  ====
 let g:sql_type_default = 'pgsql'
 
 " ==== ag ====
-let g:ackprg = 'ag --vimgrep --smart-case'
+let g:ackprg = 'rg --vimgrep --smart-case'
 
 " ==== Lightline ====
 let g:lightline = {
@@ -417,12 +409,14 @@ function! BufCleanup()
 	endfor
 endfunction
 
-" ==== GitGutter ====
-let g:gitgutter_map_keys = 0
+" ==== Gitsigns ====
+lua << EOF
+require('gitsigns').setup{}
+EOF
 
-" ==== indentLine ====
-let g:indentLine_char = '┆'
-let g:indentLine_enabled = 1
+" ==== indent-blankline ====
+let g:indent_blankline_char = '┆'
+let g:indent_blankline_enabled = 1
 
 " ==== UltiSnip ====
 let g:UltiSnipsExpandTrigger="<c-*"
