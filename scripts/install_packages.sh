@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo 'Lets install some junk!'
 if test ! $(which brew); then
   echo 'Installing homebrew...'
