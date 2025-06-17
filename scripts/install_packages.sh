@@ -15,6 +15,7 @@ PACKAGES=(
   git
   mysql
   neovim
+  python
   node
   nvm
   postgresql
@@ -31,6 +32,9 @@ PACKAGES=(
 
 echo 'Installing packages...'
 brew install ${PACKAGES[@]}
+
+echo 'Registering Python provider for Neovim...'
+pip3 install --user pynvim
 
 echo 'Running Cleanup'
 brew cleanup

@@ -10,6 +10,11 @@ The installation scripts assume that [Homebrew](https://brew.sh/) is available
 for installing packages. The `install_packages.sh` script will install
 Homebrew for you if it is missing.
 
+Neovim plugins such as UltiSnips require Python 3 with the `pynvim` module.
+The `install_packages.sh` script installs Python through Homebrew and runs
+`pip3 install --user pynvim` so that Neovim can locate its Python provider.
+You can verify the setup from within Neovim using `:checkhealth provider`.
+
 ## Installation
 
 Clone this repository anywhere on your system and run the provided scripts:
